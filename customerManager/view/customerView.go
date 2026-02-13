@@ -37,19 +37,33 @@ func (c *customerView) add() {
 	fmt.Println("------------------------添加用户------------------------------")
 	fmt.Println("姓名：")
 	name := ""
-	fmt.Scanln(&name)
+	if _, err := fmt.Scanln(&name); err != nil {
+		fmt.Println("输入错误:", err)
+	}
 	fmt.Println("性别：")
 	gender := ""
-	fmt.Scanln(&gender)
+	if _, err := fmt.Scanln(&gender); err != nil {
+		fmt.Println("输入错误:", err)
+	}
+
 	fmt.Println("年龄：")
 	age := 0
-	fmt.Scanln(&age)
+	if _, err := fmt.Scanln(&age); err != nil {
+		fmt.Println("输入错误:", err)
+	}
+
 	fmt.Println("电话：")
 	phone := ""
-	fmt.Scanln(&phone)
+	if _, err := fmt.Scanln(&phone); err != nil {
+		fmt.Println("输入错误:", err)
+	}
+
 	fmt.Println("邮箱：")
 	email := ""
-	fmt.Scanln(&email)
+	if _, err := fmt.Scanln(&email); err != nil {
+		fmt.Println("输入错误:", err)
+	}
+
 	//构建一个新的Customer实例
 	//注意：id不让用户输入，是系统分配
 	customer := model.NewCustomer2(name, gender, age, phone, email)
@@ -67,14 +81,20 @@ func (c *customerView) delect() {
 	fmt.Println("------------------------删除用户--------------------------------")
 	fmt.Println("请选择待删除客户编号（-1退出)")
 	id := -1
-	fmt.Scanln(&id)
+	if _, err := fmt.Scanln(&id); err != nil {
+		fmt.Println("输入错误:", err)
+	}
+
 	if id == -1 {
 		return //放弃删除操作
 	}
 	fmt.Println("确认是否删除(Y/N)")
 	//这里可以加入循环判断
 	choice := ""
-	fmt.Scanln(&choice)
+	if _, err := fmt.Scanln(&choice); err != nil {
+		fmt.Println("输入错误:", err)
+	}
+
 	if choice == "Y" || choice == "y" {
 		//调用删除方法
 		if c.customerService.Delete(id) {
@@ -91,7 +111,10 @@ func (c *customerView) exit() {
 
 	fmt.Println("确认是否退出(Y/N)")
 	for {
-		fmt.Scanln(&c.key)
+		if _, err := fmt.Scanln(&c.key); err != nil {
+			fmt.Println("输入错误:", err)
+		}
+
 		if c.key == "Y" || c.key == "y" {
 			c.loop = false
 			break
@@ -117,7 +140,10 @@ func (c *customerView) mainMenu() {
 		fmt.Println("                5.退出")
 		fmt.Println("请选择1-5")
 
-		fmt.Scanln(&c.key)
+		if _, err := fmt.Scanln(&c.key); err != nil {
+			fmt.Println("输入错误:", err)
+		}
+
 		switch c.key {
 		case "1":
 			c.add()
