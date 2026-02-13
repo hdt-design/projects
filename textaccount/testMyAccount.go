@@ -10,7 +10,7 @@ func main() {
 	var note string
 	balance := 10000.00
 	flag := false
-	details := "收支\t账户金额\t收支金额\t说    明"
+	details := "收支\t账户金额\t收支金额\t说   明"
 
 	for {
 		fmt.Println("\n-----------------家庭收支记账软件-----------------")
